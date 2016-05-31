@@ -1,7 +1,9 @@
 ##' Simulate an ensemble of outbreaks based on a branching process with negative binomial offspring distribution
 ##'
-##' Content for details - still to be written. (need to give the
-##' formula for the negative binomial offspring distribution)
+##' The negative binomial offspring distribution is parametrised in
+##' terms of the mean R0 (which is also the basic reproduction
+##' number), and the dispersion parameter k, and given as
+##' P(i|R0, k) = Gamma(i+k) / (Gamma(i+1) Gamma(k)) * k^k R0^i /(R0 + k)^(i+k).
 ##' @title Outbreak simulation
 ##' @param R0 Basic reproduction number of the branching process,
 ##' which also is the mean of the offspring distribution.
