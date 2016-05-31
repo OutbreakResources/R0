@@ -1,6 +1,7 @@
 ##' Simulate an ensemble of outbreaks based on a branching process with negative binomial offspring distribution
 ##'
-##' Content for details - still to be written. (need to give the formula for the negative binomial offspring distribution)
+##' Content for details - still to be written. (need to give the
+##' formula for the negative binomial offspring distribution)
 ##' @title Outbreak simulation
 ##' @param R0 Basic reproduction number of the branching process,
 ##' which also is the mean of the offspring distribution.
@@ -16,11 +17,32 @@
 ##' @param incidence.interval Interval into which the incidence is
 ##' aggregated. Default incidence.interva = 7 (reporting weekly
 ##' incidence, if time is measured in days).
-##' @param n.output Maximum number of cases per outbreak to output. Default n.output = 1000. 
-##' @param p.report Probability that a case is reported. Default p.report = 1, needs to be 0 < p.report <= 1.
+##' @param n.output Maximum number of cases per outbreak to
+##' output. Default n.output = 1000.
+##' @param p.report Probability that a case is reported. Default
+##' p.report = 1, needs to be 0 < p.report <= 1.
 ##' @return A list of various stuff.
 ##' @author Tini
 ##' @export
+##' @example
+##' set.seed(1)
+##' si.sample = rgamma(n = 1000, shape = 2, rate = 0.2)
+##'
+##' outbreak.size.max = 1000
+##' incidence.interval = 7
+##'
+##' outbreaks = simulate.branching.process(R0 = 2, k = 1,
+##' serial.interval.sample = si.sample, outbreak.size.max =
+##' outbreak.size.max, incidence.interval = 7)
+##'
+##' outbreaks$p.extinction
+##' ## plotting the outbreak size distribution conditional on extinction:
+##' hist(outbreaks$outbreak.size[outbreaks$outbreak.size < outbreak.size.max], col = "grey", main = "Outbreak size distribution", xlab = "Number of cases")
+##'
+##' ## plotting the incidence curve for a non-extinct outbreak
+##' i = which(outbreaks$outbreak.size == outbreak.size.max)[1] ## finding a non-extinct outbreak
+##' plot(1:nrow(outbreaks$incidence), outbreaks$incidence[, i], type = "s", xlab = "week", ylab = "incidence")
+##' lines(rep(outbreaks$time.complete[i], 2)/incidence.interval, c(0, max(outbreaks$incidence[, i])), col = 2) ## indicating the time until which simulation is complete. 
 simulate.branching.process = function(R0, k, serial.interval.sample, n.outbreaks = 1000, outbreak.size.max = 1000, n.crit = 100, incidence.interval = 7, n.output = 1000, p.report = 1) {
 
     ## matrix of case id's
@@ -134,12 +156,21 @@ simulate.branching.process = function(R0, k, serial.interval.sample, n.outbreaks
     return(res)
 }
 ################################################################################
-##' .. content for \description{} (no empty lines) ..
-##'
-##' .. content for \details{} ..
-##' @title 
-##' @return 
-##' @author 
-my.fun = function() {
 
-}
+## set.seed(1)
+## si.sample = rgamma(n = 1000, shape = 2, rate = 0.2)
+
+## outbreak.size.max = 1000
+## incidence.interval = 7
+
+## outbreaks = simulate.branching.process(R0 = 2, k = 1, serial.interval.sample = si.sample, outbreak.size.max = outbreak.size.max, incidence.interval = 7)
+
+## outbreaks$p.extinction
+## ## plotting the outbreak size distribution conditional on extinction:
+## hist(outbreaks$outbreak.size[outbreaks$outbreak.size < outbreak.size.max], col = "grey", main = "Outbreak size distribution", xlab = "Number of cases")
+
+## ## plotting the incidence curve for a non-extinct outbreak
+## i = which(outbreaks$outbreak.size == outbreak.size.max)[1] ## finding a non-extinct outbreak
+## plot(1:nrow(outbreaks$incidence), outbreaks$incidence[, i], type = "s", xlab = "week", ylab = "incidence")
+## lines(rep(outbreaks$time.complete[i], 2)/incidence.interval, c(0, max(outbreaks$incidence[, i])), col = 2) ## indicating the time until which simulation is complete. 
+ 
