@@ -2,8 +2,10 @@
 ##'
 ##' The negative binomial offspring distribution is parametrised in
 ##' terms of the mean R0 (which is also the basic reproduction
-##' number), and the dispersion parameter k, and given as
-##' P(i|R0, k) = Gamma(i+k) / (Gamma(i+1) Gamma(k)) * k^k R0^i /(R0 + k)^(i+k).
+##' number), and the dispersion parameter k, and given as P(i|R0, k) =
+##' Gamma(i+k) / (Gamma(i+1) Gamma(k)) * k^k R0^i /(R0 + k)^(i+k).
+##' Poisson and geometric distributions are special cases of this,
+##' obtained for k = infinity and k = 1, respectively.
 ##' @title Outbreak simulation
 ##' @param R0 Basic reproduction number of the branching process,
 ##' which also is the mean of the offspring distribution.
